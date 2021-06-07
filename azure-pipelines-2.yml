@@ -1,0 +1,34 @@
+trigger:
+- master
+
+pool:
+       name: Default
+       demands: mycap
+
+stages:
+  - stage: Welcome
+    jobs:
+    - job: PrintMessage
+
+      steps:
+          - script: echo 'Hello User!!!'
+    - job: AssignTask
+
+      steps:
+      - script: echo 'Different Tasks are Building,Testing and Packaging'
+    
+  - stage: StartTask
+    jobs:
+      - job: Task1
+        steps: 
+        - script: echo 'Task1 started'
+        
+  - stage: EndTask
+    jobs:
+    - job: Task2
+      steps:
+        - script: echo 'Task 1 ended'
+
+
+
+
